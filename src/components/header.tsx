@@ -1,38 +1,55 @@
-import { Link } from "gatsby"
+import { Link, graphql, useStaticQuery } from "gatsby"
 import React from "react"
 import styled from "styled-components"
-
-interface HeaderProps {
-  siteTitle: string
-}
 
 const StyledHeader = styled.header`
   background: rebeccapurple;
   margin-bottom: 1.45rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(100px, max-content));
+  grid-gap: 20px;
+  h1 {
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+    color: white;
+  }
 `
 
-const Header = ({ siteTitle }: HeaderProps) => (
-  <StyledHeader>
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
-  </StyledHeader>
-)
+const StyledLink = styled(Link)`
+  color: white;
+  text-decoration: none;
+`
 
+const Header = () => {
+  const data = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            title
+          }
+        }
+      }
+    `,
+  )
+
+  return (
+    <StyledHeader>
+      <h1>
+        <StyledLink to="/">{data.site.siteMetadata.title}</StyledLink>
+      </h1>
+      <h1>
+        <StyledLink to="/blog">My Blog</StyledLink>
+      </h1>
+
+      <h1>
+        <StyledLink to="/about">About me</StyledLink>
+      </h1>
+      <h1>
+        <StyledLink to="/contact">Contact me</StyledLink>
+      </h1>
+    </StyledHeader>
+  )
+}
 export default Header

@@ -5,9 +5,9 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `franke.tech`,
-    description: `The personal website of Benedikt Franke`,
-    author: `Benedikt Franke`,
+    title: `David Liu's Blog`,
+    description: `The personal website of David Liu`,
+    author: `David Liu`,
   },
   plugins: [
     `gatsby-plugin-typescript`,
