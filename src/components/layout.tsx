@@ -6,45 +6,30 @@
  */
 
 import React, { ReactNode } from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import styled from "styled-components"
 
 import Header from "./header"
 import { GlobalStyles } from "../globalStyles"
+import Footer from "./footer"
 
+const ContentWrapper = styled.div`
+  margin: 0 auto;
+  max-width: 960px;
+  padding-top: 0px;
+`
 interface LayoutProps {
   children: ReactNode
 }
 
 const Layout = ({ children }: LayoutProps) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
-
   return (
     <>
       <GlobalStyles />
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0px 1.0875rem 1.45rem`,
-          paddingTop: 0,
-        }}
-      >
+      <Header />
+      <ContentWrapper>
         <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-      </div>
+        <Footer />
+      </ContentWrapper>
     </>
   )
 }

@@ -1,7 +1,14 @@
 import React from "react"
 
 const Footer = () => {
-  return <div>David Liu 2019</div>
+  return (
+    <div>
+      <footer>
+        © {new Date().getFullYear()}, {`Built with `}
+        <a href="https://www.gatsbyjs.org">Gatsby</a>
+      </footer>
+    </div>
+  )
 }
 
 export default Footer
